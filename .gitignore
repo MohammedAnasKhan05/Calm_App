@@ -1,0 +1,21 @@
+# Node.js (frontend + backend)
+node_modules
+dist
+build
+
+# Python notebooks
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints
+
+# Environment / config
+.env
+*.env
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode
+.idea
