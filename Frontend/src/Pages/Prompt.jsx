@@ -18,7 +18,6 @@ export default function Prompt() {
         body: JSON.stringify({ prompt: input, email }), // include email!
       });
       const data = await res.json();
-      localStorage.setItem("userEmail", data.email); // data.email from backend response
       setOutput(data.response || "No response");
     } catch {
       setOutput("Server error. Please try again.");
