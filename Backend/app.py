@@ -15,6 +15,10 @@ load_dotenv()  # This loads variables from .env into environment
 SECRET_KEY = secrets.token_hex(24)
 # Now use them like this:
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+
+if not app.config["MONGO_URI"]:
+    raise Exception("MONGO_URI is not set in environment variables")
+
 app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 users = mongo.db.users
