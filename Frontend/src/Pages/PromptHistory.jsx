@@ -7,7 +7,7 @@ export default function PromptHistory() {
 
   useEffect(() => {
     const email = localStorage.getItem("userEmail");
-    fetch(`http://localhost:5000/prompt-history?email=${encodeURIComponent(email)}`)
+    fetch(`https://calm-app.onrender.com/prompt-history?email=${encodeURIComponent(email)}`)
       .then((res) => res.json())
       .then((data) => {
         setHistory(data);

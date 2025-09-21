@@ -12,7 +12,7 @@ export default function Prompt() {
     setOutput("");
     try {
       const email = localStorage.getItem("userEmail");
-      const res = await fetch("http://localhost:5000/prompt", {
+      const res = await fetch("https://calm-app.onrender.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: input, email }), // include email!
