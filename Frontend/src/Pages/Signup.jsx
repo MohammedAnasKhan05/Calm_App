@@ -19,7 +19,7 @@ export default function Signup() {
     setError("");
     setSuccess("");
     try {
-      const res = await fetch("https://calm-app.onrender.com", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
