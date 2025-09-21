@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://calm-app-frontend.onrender.com"])
 
 
 load_dotenv()  # This loads variables from .env into environment
