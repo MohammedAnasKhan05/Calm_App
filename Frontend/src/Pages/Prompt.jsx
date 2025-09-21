@@ -11,12 +11,14 @@ export default function Prompt() {
     setLoading(true);
     setOutput("");
     try {
+      const email = localStorage.getItem("userEmail");
       const res = await fetch("http://localhost:5000/prompt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: input }),
+        body: JSON.stringify({ prompt: input, email }), // include email!
       });
       const data = await res.json();
+      localStorage.setItem("userEmail", data.email); // data.email from backend response
       setOutput(data.response || "No response");
     } catch {
       setOutput("Server error. Please try again.");

@@ -17,6 +17,9 @@ export default function Navbar() {
         <li><Link to="/" className="text-xl text-white hover:text-indigo-300">Home</Link></li>
         <li><Link to="/support" className="text-xl text-white hover:text-indigo-300">Support</Link></li>
         <li><Link to="/about" className="text-xl text-white hover:text-indigo-300">About</Link></li>
+        <Link to="/prompt-history" className="text-xl text-white  hover:text-indigo-300">
+          Prompt History
+        </Link>
         {!isAuthenticated ? (
           <>
             <li><Link to="/login" className="text-xl text-white hover:text-indigo-300">Login</Link></li>

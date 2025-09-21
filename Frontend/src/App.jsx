@@ -1,13 +1,14 @@
 // App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Support from "./pages/Support";
 import Prompt from "./pages/Prompt";
 import About from "./pages/About";
+import PromptHistory from "./pages/PromptHistory";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/support" element={<Support />} />
         <Route path="/about" element={<About />} />
         <Route path="/prompt" element={<Prompt />} />
+        <Route path="/prompt-history" element={<PromptHistory />} />
       </Routes>
       <Footer />
     </Router>
