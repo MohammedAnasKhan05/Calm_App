@@ -4,6 +4,7 @@ from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 import os
+import secrets
 
 app = Flask(__name__)
 CORS(app, origins=["https://calm-app-frontend.onrender.com"])
@@ -11,6 +12,7 @@ CORS(app, origins=["https://calm-app-frontend.onrender.com"])
 
 load_dotenv()  # This loads variables from .env into environment
 
+SECRET_KEY = secrets.token_hex(24)
 # Now use them like this:
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -70,3 +72,4 @@ if __name__ == '__main__':
     app.run(host="0.0.0.0", port=port)
 
 # localStorage.setItem("userEmail", data.email); # data.email from backend response
+print(secrets.token_hex(24))
