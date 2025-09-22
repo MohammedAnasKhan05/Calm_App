@@ -35,27 +35,52 @@ except Exception as e:
     logger.error(f"❌ Failed to initialize PyMongo: {e}")
 
 # ---------------- Routes ----------------
+# @app.route('/signup', methods=['POST'])
+# def signup():
+#     data = request.json
+#     logger.debug(f"📩 Signup request payload: {data}")
+
+#     if not mongo or not mongo.db:
+#         logger.error("❌ Database not connected in /signup")
+#         return jsonify({'error': 'Database not connected'}), 500
+
+#     users = mongo.db.users
+#     if users.find_one({'email': data['email']}):
+#         return jsonify({'message': 'Email already exists'}), 400
+
+#     hashed_password = generate_password_hash(data['password'])
+#     users.insert_one({
+#         'username': data['username'],
+#         'email': data['email'],
+#         'password_hash': hashed_password
+#     })
+#     logger.info(f"✅ User created: {data['email']}")
+#     return jsonify({'message': 'User created successfully'})
+
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.json
-    logger.debug(f"📩 Signup request payload: {data}")
+    app.logger.debug(f"📩 Signup payload: {data}")
 
     if not mongo or not mongo.db:
-        logger.error("❌ Database not connected in /signup")
         return jsonify({'error': 'Database not connected'}), 500
 
     users = mongo.db.users
-    if users.find_one({'email': data['email']}):
-        return jsonify({'message': 'Email already exists'}), 400
+    try:
+        if users.find_one({'email': data['email']}):
+            return jsonify({'error': 'Email already exists'}), 400
 
-    hashed_password = generate_password_hash(data['password'])
-    users.insert_one({
-        'username': data['username'],
-        'email': data['email'],
-        'password_hash': hashed_password
-    })
-    logger.info(f"✅ User created: {data['email']}")
-    return jsonify({'message': 'User created successfully'})
+        hashed_password = generate_password_hash(data['password'])
+        users.insert_one({
+            'username': data['username'],
+            'email': data['email'],
+            'password_hash': hashed_password
+        })
+        return jsonify({'message': 'User created successfully'})
+    except Exception as e:
+        app.logger.error(f"❌ Error in signup: {e}")
+        return jsonify({'error': 'Server error', 'details': str(e)}), 500
+
 
 @app.route('/login', methods=['POST'])
 def login():
