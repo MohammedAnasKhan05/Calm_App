@@ -5,24 +5,24 @@ export default function Home() {
   const navigate = useNavigate();
 
   // Fetch data from backend on mount
-  // useEffect(() => {
-  //   fetch(`${import.meta.env.VITE_API_URL}/api/endpoint`)
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data))
-  //     .catch((err) => console.error("API error:", err));
-  // }, []);
-
-   useEffect(() => {
-    // Use the environment variable from .env
+  useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/endpoint`)
-      .then(res => res.json())
-      .then(data => {
-        console.log("API response:", data);
-      })
-      .catch(err => {
-        console.error("API error:", err);
-      });
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error("API error:", err));
   }, []);
+
+  //  useEffect(() => {
+  //   // Use the environment variable from .env
+  //   fetch(`${import.meta.env.VITE_API_URL}/api/endpoint`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log("API response:", data);
+  //     })
+  //     .catch(err => {
+  //       console.error("API error:", err);
+  //     });
+  // }, []);
 
   const handleGetStarted = () => {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
