@@ -18,9 +18,6 @@ CORS(app, origins=["https://calm-app-frontend.onrender.com"])
 # Load .env (only works locally, Render uses environment variables)
 load_dotenv()
 
-# Secret key
-SECRET_KEY = os.environ.get("SECRET_KEY", secrets.token_hex(24))
-app.secret_key = SECRET_KEY
 
 # MongoDB connection
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
@@ -145,6 +142,10 @@ def delete_prompts():
 @app.route('/')
 def index():
     return "✅ Calm App backend is running!"
+
+@app.route('/api/endpoint', methods=['GET'])
+def api_endpoint():
+    return jsonify({"message": "This is a test endpoint!"})
 
 # ---------------- Run ----------------
 if __name__ == '__main__':
