@@ -18,9 +18,8 @@ CORS(app, origins=["https://calm-app-frontend.onrender.com"])
 # Load .env (only works locally, Render uses environment variables)
 load_dotenv()
 
-
-# MongoDB connection
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY") or secrets.token_hex(24)
 logger.info(f"MONGO_URI being used: {app.config['MONGO_URI']}")
 
 mongo = None
