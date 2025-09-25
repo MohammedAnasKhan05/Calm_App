@@ -12,8 +12,8 @@ logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 
 # ---------------- Flask App ----------------
-app = Flask(__name__)
-CORS(app, origins=["https://calm-app-frontend.onrender.com"])
+# app = Flask(__name__)
+# CORS(app, origins=["https://calm-app-frontend.onrender.com"])
 
 # Load .env (only works locally, Render uses environment variables)
 load_dotenv()
